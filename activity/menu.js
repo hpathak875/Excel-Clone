@@ -30,13 +30,9 @@ function setTextAlignment(alignment, element) {
   if (element.classList.contains("active-font-style") || !lastSelectedCell ) {
     return;
   }
-  // remove already set text align from menu ui !!
   document.querySelector(".font-alignments .active-font-style").classList.remove("active-font-style");
-  // Menu UI pe changes
   element.classList.add("active-font-style");
-  // Cells UI pe changes
   lastSelectedCell.style.textAlign = alignment;
-  // db pe changes
   let { rowId, colId } = getRowIdColIdFromElement(lastSelectedCell);
   let cellObject = db[rowId][colId];
   cellObject.textAlign = alignment;
@@ -46,9 +42,7 @@ function setFontStyle(styleName, element) {
   if (lastSelectedCell) {
     let { rowId, colId } = getRowIdColIdFromElement(lastSelectedCell);
     let cellObject = db[rowId][colId];
-    // pehle se true tha
     if (cellObject.fontStyle[styleName]) {
-      // UI pe changes krdia
       if (styleName == "bold") {
         lastSelectedCell.style.fontWeight = "normal";
       } else if (styleName == "italic") {
@@ -67,7 +61,6 @@ function setFontStyle(styleName, element) {
       }
       element.classList.add("active-font-style");
     }
-    // change in db
     cellObject.fontStyle[styleName] = !cellObject.fontStyle[styleName];
   }
 }
